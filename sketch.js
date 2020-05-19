@@ -4,9 +4,10 @@ const Bodies = Matter.Bodies;
 const Constraint = Matter.Constraint;
 
 var engine, world;
-var box1, pig1;
+var box;
+var circle1;
 var backgroundImg,platform;
-var bird, slingShot;
+var ball, slingShot;
 
 function preload() {
     backgroundImg = loadImage("sprites/bg.png");
@@ -23,52 +24,49 @@ function setup(){
 
     box1 = new Box(700,320,70,70);
     box2 = new Box(920,320,70,70);
-    pig1 = new Pig(810, 350);
-    log1 = new Log(810,260,300, PI/2);
+    circle1 = new Circle1(810,350,50,50);
+    rect1 = new Log(810,260,300, PI/2);
 
     box3 = new Box(700,240,70,70);
     box4 = new Box(920,240,70,70);
-    pig3 = new Pig(810, 220);
+    circle3 = new Circle3(810,220,50,50);
 
-    log3 =  new Log(810,180,300, PI/2);
+    rect3 =  new Rect5(810,180,300, PI/2);
 
     box5 = new Box(810,160,70,70);
-    log4 = new Log(760,120,150, PI/7);
-    log5 = new Log(870,120,150, -PI/7);
+    rect4 = new Rect4(760,120,150, PI/7);
+    rect5 = new Rect4(870,120,150, -PI/7);
 
-    bird = new Bird(200,50);
-
-    //log6 = new Log(230,180,80, PI/2);
+    ball = new Ball(200,50);
     slingshot = new SlingShot(bird.body,{x:200, y:50});
 }
 
 function draw(){
     background(backgroundImg);
     Engine.update(engine);
-    //strokeWeight(4);
+   
     box1.display();
     box2.display();
     ground.display();
-    pig1.display();
-    log1.display();
+    circle1.display();
+    rect1.display();
 
     box3.display();
     box4.display();
-    pig3.display();
-    log3.display();
+    circle3.display();
+    rect3.display();
 
     box5.display();
-    log4.display();
-    log5.display();
+    rect4.display();
+    rect5.display();
 
-    bird.display();
+    ball.display();
     platform.display();
-    //log6.display();
     slingshot.display();    
 }
 
 function mouseDragged(){
-    Matter.Body.setPosition(bird.body, {x: mouseX , y: mouseY});
+    Matter.Body.setPosition(ball.body, {x: mouseX , y: mouseY});
 }
 
 
@@ -78,7 +76,7 @@ function mouseReleased(){
 function keyPressed(){
 
 if(keyCode===32){
-slingshot.attach(bird.body)
+slingshot.attach(ball.body)
 }
 
 }
